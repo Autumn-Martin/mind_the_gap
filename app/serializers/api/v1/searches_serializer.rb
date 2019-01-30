@@ -12,11 +12,15 @@ class Api::V1::SearchesSerializer
   end
 
   def campsite_names
-    # this works
-    # unavail_campsites_inside_bounds = Campsite.joins(:reservations).where("start_date IN (?) OR end_date IN (?)", @range, @range).pluck(:campsite_id)
-    # avail_id = Campsite.where.not(id: unavail_campsites_inside_bounds).pluck(:id)
+    # Reservation.booked_campsites #=> [1, 2, 3]
 
-    return Reservation.booked_campsites #=> [1, 2, 3]
+    ## poss_campsites = campsites that would not be double booked by query time range (poss available)
+    ## for each possible campsite
+    ##    need difference between query range and next closest rezo range (before & after query range)
+    ##    if difference == even
+    ##      gap free!
+    ##    elsif difference == odd
+    ##      gap beware!
   end
 
 
