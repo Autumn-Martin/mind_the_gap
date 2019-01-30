@@ -11,6 +11,15 @@ class Api::V1::SearchesSerializer
     }
   end
 
+  def campsite_names
+    # this works
+    # unavail_campsites_inside_bounds = Campsite.joins(:reservations).where("start_date IN (?) OR end_date IN (?)", @range, @range).pluck(:campsite_id)
+    # avail_id = Campsite.where.not(id: unavail_campsites_inside_bounds).pluck(:id)
+
+    return Reservation.booked_campsites #=> [1, 2, 3]
+  end
+
+
   private
 
   def serialized_campsites
@@ -31,7 +40,7 @@ class Api::V1::SearchesSerializer
       }
     end
   end
-  
+
   def unserialized_reservations
     Reservation.all
   end
