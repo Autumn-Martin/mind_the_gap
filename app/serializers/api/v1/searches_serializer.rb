@@ -12,15 +12,20 @@ class Api::V1::SearchesSerializer
   end
 
   def campsite_names
-    # Reservation.booked_campsites #=> [1, 2, 3]
-
+    booked_campsite_ids = Reservation.booked_campsites #=> [1, 2, 3]
+    poss_campsite_ids = Campsite.where.not(id: booked_campsite_ids).pluck(:id) #=> [4, 5]
+    poss_campsites = Campsite.where.not(id: booked_campsite_ids)
+    prior_rezo_dates = poss_campsites.joins(:reservations).pluck(:start_date, :end_date)
+    
+    # return poss_campsites
     ## poss_campsites = campsites that would not be double booked by query time range (poss available)
     ## for each possible campsite
-    ##    need difference between query range and next closest rezo range (before & after query range)
-    ##    if difference == even
-    ##      gap free!
-    ##    elsif difference == odd
-    ##      gap beware!
+    ##   if it has a reso that starts x (two) days after query range
+    ##   OR if it has a reso that starts x (two) days before query range
+           ## gap beware
+      ## else
+        ## available!
+
   end
 
 
