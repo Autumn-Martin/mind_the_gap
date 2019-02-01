@@ -3,7 +3,7 @@ January 2018 | Contributors: Autumn Martin
 
 ## About
 ### Intro
-Mind The Gap displays available campsites for a date range while minding the gap. This app prevents campsite reservations that will create a one-day gap in campsite reservations, which can be challenging to fill when campers are traveling far and most often want to stay multiple nights.
+Mind The Gap displays available campsites for a date range while minding the gap. By default, this app prevents campsite reservations that will create a one-day gap in campsite reservations, which can be challenging to fill when campers are traveling far and most often want to stay multiple nights. Additionally, Mind The Gap gives you the choice to create whatever gap rule you would like!
 
 ### Background
 Mind The Gap is a Ruby on Rails API that uses a PostgreSQL database. Its database has two tables, campsites and reservations. Campsites has a one-to-many relationship with reservations, and a reservation belongs to a campsite.
@@ -19,9 +19,20 @@ Rails 5.2.1, Ruby 2.5.1, RSpec, PostgreSQL, ActiveRecord
 
 ## Endpoints
 
-## Available Campsite Names
+## Available Campsite Names Minding a Gap Rule (Gap Rule Is For One-Night by Default)
 ### GET **/api/v1/campsites/available?start_date={{start_date}}&end_date={{end_date}}**
 
+Required Params:
+```
+start_date
+end_date
+```
+Optional Params:
+```
+gap_rule
+```
+
+### Example with default gap rule
 Request:
 ```
 /api/v1/campsites/available?start_date=2018-06-04&end_date=2018-06-06
@@ -32,6 +43,19 @@ Accept: application/json
 Response:
 ```
 ["Comfy Cabin", "Rickety Cabin", "Cabin in the Woods"]
+```
+
+### Example with gap rule of 2
+Request:
+```
+/api/v1/campsites/available?start_date=2018-06-04&end_date=2018-06-06&gap_rule=2
+Content-Type: application/json
+Accept: application/json
+```
+
+Response:
+```
+["Rustic Cabin", "Cabin in the Woods"]
 ```
 
 ## All campsite & reservation data
