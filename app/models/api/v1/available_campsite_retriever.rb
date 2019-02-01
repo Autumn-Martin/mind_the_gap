@@ -14,7 +14,7 @@ class Api::V1::AvailableCampsiteRetriever
   def available_campsites
     update_data # if data is retrieved from an external API endpoint instead, this will update the internal database
 
-    booked_campsite_ids = Reservation.booked_campsites #=> [1, 2, 3]
+    booked_campsite_ids = Reservation.booked_campsites(@start_date, @end_date) #=> [1, 2, 3]
     poss_campsites = Campsite.where.not(id: booked_campsite_ids)
     available_spots = []
 
