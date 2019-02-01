@@ -1,4 +1,4 @@
-# Ski Meow
+# Mind The Gap
 January 2018 | Contributors: Autumn Martin
 
 ## About
@@ -15,7 +15,17 @@ The first, `/api/v1/campsites/available` returns only available campsite names. 
 The second, `/api/v1/searches` returns all campsite and reservation data.
 
 #### Tech Stack
-Rails 5.2.1, Ruby 2.5.1, RSpec, PostgreSQL, ActiveRecord
+Rails 5.2.1, Ruby 2.5.1, PostgreSQL, ActiveRecord, RSpec
+
+### Assumptions
+Assumptions were made about the desired gap rule based on the expected input, expected output, & instructions for this challenge.
+
+I thought it would be best to have a database that an API would serve up data from. I built a database to serve up data to `/api/v1/searches endpoint`, and serialized it to look just like the expected input file. Then I retrieved the serialized result for the `api/v1/campsites?available` endpoint. I considered that this result could be retrieved from an external API endpoint in the future, and prepped the `api/v1/campsites?available` endpoint for that case by using this result to update my database.
+
+Lastly, I considered quite a bit whether to use a new language to me, such as Go or Java, or a tech stack that I was more experienced with. I ultimately decided on the latter due to time restraints.
+
+### Special Considerations
+I considered the possibility that different campsite managers might like to use different gap rules. To achieve this, I included an optional parameter where users could choose a different gap rule if they would like.
 
 ## Endpoints
 
@@ -129,3 +139,5 @@ Now view the app locally in development by visiting `http://localhost:3000/` in 
 ### Testing
 
 The test suite is created through RSpec. To run this test suite, run `rspec`. Mind the Gap currently maintains 94.81% test coverage according to [SimpleCov](https://github.com/colszowka/simplecov).
+
+Also please note that there is a test database helper, which seeds data purely for test runs. This file can be adjusted if you would like to work with a different data set. 
