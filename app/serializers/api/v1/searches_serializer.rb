@@ -1,7 +1,7 @@
 class Api::V1::SearchesSerializer
   def initialize(start_date, end_date)
-    @start_date = start_date
-    @end_date = end_date
+    @start_date = start_date.gsub(/[.\/]/, '-')
+    @end_date = end_date.gsub(/[.\/]/, '-')
   end
 
   def search_data
