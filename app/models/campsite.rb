@@ -6,8 +6,9 @@ class Campsite < ApplicationRecord
     Campsite.where.not(id: Reservation.booked_campsite_ids(query_start_date, query_end_date))
   end
 
-  def self.available_campsite_names(query_start_date, query_end_date)
+  def self.available_campsite_names(query_start_date, query_end_date, gap_rule)
     available_spots = []
+    gap_needed = gap_rule + 1
 
     Campsite.poss_campsites(query_start_date, query_end_date).each do |campsite|
 
@@ -19,7 +20,7 @@ class Campsite < ApplicationRecord
         campsite_rezo_start_dates.each { |rezo_date| differences << rezo_date.to_date - query_end_date.to_date }
         campsite_rezo_end_dates.each { |rezo_date| differences << query_start_date.to_date - rezo_date.to_date }
 
-        if differences.none? {|diff| diff.to_i == 2}
+        if differences.none? {|diff| diff.to_i == gap_needed}
           available_spots << campsite
         end
       elsif campsite.reservations = []

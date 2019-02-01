@@ -1,9 +1,10 @@
 class Api::V1::AvailableCampsiteRetriever
-  def initialize(data)
+  def initialize(data, gap_rule)
     @start_date = data[:search][:startDate]
     @end_date = data[:search][:endDate]
     @campsites = data[:campsites]
     @rezos = data[:reservations]
+    @gap_rule = gap_rule.to_i ||= 1
   end
 
   def update_data
@@ -14,7 +15,7 @@ class Api::V1::AvailableCampsiteRetriever
   def updated_available_campsites
     update_data # if data is retrieved from an external API endpoint instead, this will update the internal database
 
-    Campsite.available_campsite_names(@start_date, @end_date)
+    Campsite.available_campsite_names(@start_date, @end_date, @gap_rule)
   end
 
   private
