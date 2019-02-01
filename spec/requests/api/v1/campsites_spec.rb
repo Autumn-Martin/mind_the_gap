@@ -13,5 +13,9 @@ describe 'Api::V1::Campsites API' do
     it 'sends a successful response' do
       expect(response).to be_successful
     end
+    it 'sends the expected available campsites' do
+      expected = ["Comfy Cabin", "Rickety Cabin", "Cabin in the Woods"]
+      expect(@data).to eq(expected)
+    end
   end
 end
