@@ -15,7 +15,7 @@ The first, `/api/v1/campsites/available` returns only available campsite names. 
 The second, `/api/v1/searches` returns all campsite and reservation data.
 
 #### Tech Stack
-Rails 5.2.1, Ruby 2.5.1, PostgreSQL, ActiveRecord, RSpec
+Rails 5.2.1, Ruby 2.5.1, PostgreSQL, ActiveRecord, [Waffle](https://waffle.io/Autumn-Martin/mind_the_gap)
 
 ### Assumptions
 Assumptions were made about the desired gap rule based on the expected input, expected output, & instructions for this challenge.
@@ -134,10 +134,10 @@ rake db:seed
 
 Start a server with `rails s`.
 
-Now view the app locally in development by visiting `http://localhost:3000/` in your browser.
+Now you may view the app locally in development by visiting `http://localhost:3000/` in your browser.
 
 ### Testing
 
 The test suite is created through RSpec. To run this test suite, run `rspec`. Mind the Gap currently maintains 94.81% test coverage according to [SimpleCov](https://github.com/colszowka/simplecov).
 
-Also please note that there is a test database helper, which seeds data purely for test runs. This file can be adjusted if you would like to work with a different data set. 
+Also please note that there is a test database helper, which seeds data purely for test runs. This file can be adjusted if you would like to work with a different data set.
