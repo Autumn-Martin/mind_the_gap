@@ -4,7 +4,7 @@ class Api::V1::AvailableCampsiteRetriever
     @end_date = data[:search][:endDate]
     @campsites = data[:campsites]
     @rezos = data[:reservations]
-    @gap_rule = gap_rule.to_i ||= 1
+    @gap_rule = check_gap_rule(gap_rule)
   end
 
   def update_data
@@ -19,6 +19,14 @@ class Api::V1::AvailableCampsiteRetriever
   end
 
   private
+
+  def check_gap_rule(gap_rule)
+    if gap_rule == nil
+      gap_rule = 1
+    else
+      gap_rule.to_i
+    end
+  end
 
   def update_campsites
     if @campsites.count > Campsite.all.count
