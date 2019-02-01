@@ -140,4 +140,4 @@ Now you may view the app locally in development by visiting `http://localhost:30
 
 The test suite is created through RSpec. To run this test suite, run `rspec`. Mind the Gap currently maintains 94.81% test coverage according to [SimpleCov](https://github.com/colszowka/simplecov).
 
-Also please note that there is a test database helper, which seeds data purely for test runs. This file can be adjusted if you would like to work with a different data set.
+Also please note that there is a [test database helper](https://github.com/Autumn-Martin/mind_the_gap/blob/master/spec/test_database_helper.rb), which seeds data purely for test runs. This file can be adjusted if you would like to work with a different data set.
