@@ -10,14 +10,19 @@ class Campsite < ApplicationRecord
     available_spots = []
 
     Campsite.poss_campsites(query_start_date, query_end_date).each do |campsite|
-      campsite_rezo_dates = campsite.reservations.pluck(:start_date, :end_date).flatten
 
-      # require 'pry'
-      # binding.pry
+      if campsite.reservations != []
+        campsite_rezo_start_dates = campsite.reservations.pluck(:start_date).flatten
+        campsite_rezo_end_dates = campsite.reservations.pluck(:end_date).flatten
 
-      if campsite_rezo_dates.include?(Date.strptime(query_start_date, '%Y-%m-%d') - 1) && campsite_rezo_dates.exclude?(Date.strptime(query_start_date, '%Y-%m-%d'))
-      elsif campsite_rezo_dates.include?(Date.strptime(query_end_date, '%Y-%m-%d') + 1) && campsite_rezo_dates.exclude?(Date.strptime(query_end_date, '%Y-%m-%d'))
-      else
+        differences = []
+        campsite_rezo_start_dates.each { |rezo_date| differences << rezo_date.to_date - query_end_date.to_date }
+        campsite_rezo_end_dates.each { |rezo_date| differences << query_start_date.to_date - rezo_date.to_date }
+
+        if differences.none? {|diff| diff.to_i == 2}
+          available_spots << campsite
+        end
+      elsif campsite.reservations = []
         available_spots << campsite
       end
     end
