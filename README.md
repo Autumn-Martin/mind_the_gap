@@ -104,4 +104,4 @@ Now view the app locally in development by visiting `http://localhost:3000/` in 
 
 ### Testing
 
-The test suite is created through RSpec. To run this test suite, run `rspec`. Mind the Gap currently maintains 94.29% test coverage according to [SimpleCov](https://github.com/colszowka/simplecov).
+The test suite is created through RSpec. To run this test suite, run `rspec`. Mind the Gap currently maintains 94.81% test coverage according to [SimpleCov](https://github.com/colszowka/simplecov).
