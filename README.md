@@ -5,6 +5,8 @@ January 2018 | Contributors: Autumn Martin
 ### Intro
 Mind The Gap displays available campsites for a date range while minding the gap. By default, this app prevents campsite reservations that will create a one-day gap in campsite reservations, which can be challenging to fill when campers are traveling far and most often want to stay multiple nights. Additionally, Mind The Gap gives you the choice to create whatever gap rule you would like!
 
+Available campsites can be viewed [here](https://mind-the-gap-4-campsites.herokuapp.com/api/v1/campsites/available?start_date=2018-06-04&end_date=2018-06-06) and all camp data can be viewed [here](https://mind-the-gap-4-campsites.herokuapp.com/api/v1/searches?start_date=2018-06-04&end_date=2018-06-06). Instructions for dynamic queries are below. 
+
 ### Background
 Mind The Gap is a Ruby on Rails API that uses a PostgreSQL database. Its database has two tables, campsites and reservations. Campsites has a one-to-many relationship with reservations, and a reservation belongs to a campsite.
 
@@ -120,6 +122,13 @@ Response:
 ```
 
 ## Getting started
+### Production
+This app is deployed on Heroku. Get started by visiting these links and experimenting with different parameters: 
+
+https://mind-the-gap-4-campsites.herokuapp.com/api/v1/campsites/available?start_date=2018-06-04&end_date=2018-06-06 
+
+https://mind-the-gap-4-campsites.herokuapp.com/api/v1/searches?start_date=2018-06-04&end_date=2018-06-06
+
 ### Development
 First, clone this repository via `git clone git@github.com:Autumn-Martin/mind_the_gap.git`.
 
